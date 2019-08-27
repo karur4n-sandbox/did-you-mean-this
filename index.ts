@@ -45,15 +45,15 @@ if (commandValue) {
 //
 function minimum<T>(
   arry: T[],
-  iteratee: MinimumCompare<T> | undefined
+  comparator: MinimumComparator<T> | undefined
 ): T | undefined {
   if (arry.length === 1) {
     return undefined;
   }
 
   const sorted = (() => {
-    if (typeof iteratee == "function") {
-      return [...arry].sort(iteratee);
+    if (typeof comparator == "function") {
+      return [...arry].sort(comparator);
     } else {
       return [...arry].sort();
     }
@@ -62,4 +62,4 @@ function minimum<T>(
   return sorted[0];
 }
 
-type MinimumCompare<T> = (a: T, b: T) => number;
+type MinimumComparator<T> = (a: T, b: T) => number;
